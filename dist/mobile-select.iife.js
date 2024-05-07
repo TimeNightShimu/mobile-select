@@ -587,18 +587,18 @@ var MobileSelect = function () {
         switch (t.type) {
           case "touchstart":
           case "mousedown":
-            n.style.transition = "none 0s ease-out", this.startY = Math.floor(t instanceof TouchEvent ? t.touches[0].clientY : t.clientY), this.preMoveY = this.startY, t.type === "mousedown" && (this.enableClickStatus = !0);
+            n.style.transition = "none 0s ease-out", this.startY = ('TouchEvent' in window && t instanceof TouchEvent) ? Math.floor(t.touches[0].clientY) : Math.floor(t.clientY), this.preMoveY = this.startY, t.type === "mousedown" && (this.enableClickStatus = !0);
             break;
 
           case "touchmove":
           case "mousemove":
             if (t.preventDefault(), t.type === "mousemove" && !this.enableClickStatus) break;
-            this.moveY = Math.floor(t instanceof TouchEvent ? t.touches[0].clientY : t.clientY), this.offsetY = (this.moveY - this.preMoveY) * this.config.scrollSpeed, this.updateCurDistance(n, h), this.curDistance[h] = this.curDistance[h] + this.offsetY, this.movePosition(n, this.curDistance[h]), this.preMoveY = this.moveY;
+            this.moveY = ('TouchEvent' in window && t instanceof TouchEvent) ? Math.floor(t.touches[0].clientY) : Math.floor(t.clientY), this.offsetY = (this.moveY - this.preMoveY) * this.config.scrollSpeed, this.updateCurDistance(n, h), this.curDistance[h] = this.curDistance[h] + this.offsetY, this.movePosition(n, this.curDistance[h]), this.preMoveY = this.moveY;
             break;
 
           case "touchend":
           case "mouseup":
-            if (n.style.transition = "transform 0.18s ease-out", this.moveEndY = Math.floor(t instanceof TouchEvent ? t.changedTouches[0].clientY : t.clientY), this.offsetSum = this.moveEndY - this.startY, this.oversizeBorder = -(n.getElementsByTagName("li").length - 3) * this.optionHeight, this.offsetSum == 0) {
+            if (n.style.transition = "transform 0.18s ease-out", this.moveEndY = ('TouchEvent' in window && t instanceof TouchEvent) ? Math.floor(t.changedTouches[0].clientY) : Math.floor(t.clientY), this.offsetSum = this.moveEndY - this.startY, this.oversizeBorder = -(n.getElementsByTagName("li").length - 3) * this.optionHeight, this.offsetSum == 0) {
               var g = Math.floor((window.innerHeight - this.moveEndY) / 40);
 
               if (g != 2) {
